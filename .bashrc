@@ -81,11 +81,16 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
+
 # Git Auto-complete
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
-# source ~/.git-completion.bash
+source ~/.git-completion.bash
+source ~/.git-prompt.sh
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -117,13 +122,13 @@ eval "$(direnv hook $0)"
 export PATH=$PATH:/opt/vagrant/bin/vagrant
 
 # Go install
-export PATH=$PATH:/usr/local/go/bin
+export PATH=/Users/joe/workspace/josephfreynolds/go/bin:$PATH
 
 # Go Workspace
 export GOPATH=$HOME/workspace/go
 
 # Packer path, softlink to version
-export PATH=$PATH:$HOME/bin/packer
+export PATH=$PATH:$HOME/bin
 
 # Add binaries in $GOPATH to my path
 export PATH=$PATH:$GOPATH/bin
@@ -137,9 +142,36 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/share/python:$PATH
 
 # Where to install and track work for virtualenv
-export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=~/.virtualenvs
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# Coreutils
+
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# Maven
+
+export PATH=$PATH:$HOME/bin/maven/bin
+
+# Kafka
+
+export PATH=$PATH:$HOME/kafka/bin
+
+# Openssl Flags 
+export CFLAGS="-I/usr/local/opt/openssl/include $CFLAGS"
+export LDFLAGS="-L/usr/local/opt/openssl/lib $LDFLAGS"
+
+
+# Flink
+
+export PATH=$PATH:$HOME/opt/flink-1.3.2/bin
+
+# Zookeeper
+
+export PATH=$PATH:$HOME/bin/zookeeper/bin
